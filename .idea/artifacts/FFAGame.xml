@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FFAGame">
+    <output-path>$PROJECT_DIR$/out/artifacts/FFAGame</output-path>
+    <root id="archive" name="FFAGame.jar">
+      <element id="module-output" name="FFAGame" />
+    </root>
+  </artifact>
+</component>
