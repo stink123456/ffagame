@@ -2,6 +2,7 @@ package com.exorath.simpleffa;
 
 import com.exorath.game.api.GameProperty;
 import com.exorath.game.api.action.DieAction;
+import com.exorath.game.api.gametype.minigame.Minigame;
 import com.exorath.game.api.gametype.minigame.RepeatingMinigame;
 import com.exorath.game.api.maps.MapManager;
 import com.exorath.game.api.maps.MapSelection;
@@ -15,9 +16,9 @@ import com.exorath.game.api.team.TeamManager;
  */
 public class FFAGame extends RepeatingMinigame {
     public FFAGame() {
-        setName("Exorath DeathMatch");
-        setDescription("Kill all other players in this free for all game to win.");
-        getProperties().set(GameProperty.MAX_DURATION, 60);//TODO: Implement
+        setName("Exorath DeathMatch");//Implemented!
+        setDescription("Kill all other players in this free for all game to win.");//Implemented!
+        getProperties().set(Minigame.MAX_DURATION, 100);//Implemented!
         getProperties().set(GameProperty.ALLOW_SPECTATING, true); //TODO: Check if implemented
 
         setupTeams();
@@ -25,6 +26,9 @@ public class FFAGame extends RepeatingMinigame {
         setupLobby();
 
         getActions().setDieAction(new DieAction.Spectate());
+        getStateManager().start();//Implemented!
+
+        this.addListener(new EventListener());//Implemented!
     }
 
     public void setupTeams() {
