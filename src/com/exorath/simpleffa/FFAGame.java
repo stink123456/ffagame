@@ -14,29 +14,30 @@ import com.exorath.game.api.team.TeamManager;
  * Created by TOON on 8/23/2015.
  * Random test to see what should be implemented of core
  */
-public class FFAGame extends RepeatingMinigame {
+public class FFAGame extends Minigame {
     public FFAGame() {
         setName("Exorath DeathMatch");//Implemented!
         setDescription("Kill all other players in this free for all game to win.");//Implemented!
-        getProperties().set(Minigame.MAX_DURATION, 100);//Implemented!
+        getProperties().set(Minigame.MIN_PLAYERS, 1);
+        getProperties().set(Minigame.MAX_DURATION, 20 * 180);//Implemented!
         getProperties().set(GameProperty.ALLOW_SPECTATING, true); //TODO: Check if implemented
 
         setupTeams();
+
         setupMaps();
         setupLobby();
 
         getActions().setDieAction(new DieAction.Spectate());
-        getStateManager().start();//Implemented!
 
-        this.addListener(new EventListener());//Implemented!
+        this.addListener(new EventListener(this));//Implemented!
     }
 
     public void setupTeams() {
         Team team = new FreeForAllTeam();
         team.setName("Players");
-        team.setMinTeamSize(2); //TODO: Check if implemented
+        team.setMinTeamSize(1); //TODO: Check if implemented
         team.setMaxTeamSize(16);//TODO: Check if implemented
-        TeamManager.getInstance().addTeam(team);
+        getManager(TeamManager.class).addTeam(team);
     }
 
     /**
@@ -51,11 +52,5 @@ public class FFAGame extends RepeatingMinigame {
 
     public void setupLobby() {
         //Not required
-    }
-
-    //TODO: Find out why this is mandatory lol
-    @Override
-    public void finish() {
-
     }
 }
