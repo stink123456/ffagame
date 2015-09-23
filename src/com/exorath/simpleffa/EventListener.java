@@ -1,5 +1,9 @@
 package com.exorath.simpleffa;
 
+import com.exorath.game.api.hud.effects.RainbowEffect;
+import com.exorath.game.api.hud.effects.RainbowFlickerEffect;
+import com.exorath.game.api.hud.locations.scoreboard.ScoreboardText;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 
@@ -44,11 +48,15 @@ public class EventListener implements GameListener {
 
     @Override
     public void onGameStateChange(GameStateChangedEvent e) {
-        if (e.getNewState() == GameState.INGAME)
-            game.getManager(HUDManager.class).getPublicHUD().addActionBar("ffa_rules",
-                    new HUDText("Destroy the diamond block to seize victory!", HUDPriority.MEDIUM));
-        else if (e.getNewState() == GameState.FINISHING)
-            game.getManager(HUDManager.class).getPublicHUD().removeActionBar("ffa_rules");
+        if (e.getNewState() == GameState.INGAME) {
+            HUDText text = new HUDText("Destroy the diamond block to seize victory!", HUDPriority.MEDIUM);
+            text.setEffect(new RainbowEffect(2, ChatColor.BOLD));
+            game.getManager(HUDManager.class).getPublicHUD().addActionBar("ffa_rules", text, true);
+        }else if(e.getNewState() == GameState.WAITING) {
+            ScoreboardText text = new ScoreboardText(ChatColor.BOLD + "Game ended. ", HUDPriority.MEDIUM);
+            text.setEffect(new RainbowFlickerEffect(10));
+            game.getManager(HUDManager.class).getPublicHUD().addScoreboard("ffa_rules", text, true);
+        }
     }
 
 }

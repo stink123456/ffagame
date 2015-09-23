@@ -3,8 +3,9 @@ package com.exorath.simpleffa;
 import com.exorath.game.api.GameProperty;
 import com.exorath.game.api.action.DieAction;
 import com.exorath.game.api.gametype.minigame.Minigame;
+import com.exorath.game.api.gametype.minigame.maps.MapSelection;
+import com.exorath.game.api.gametype.minigame.maps.MinigameMapManager;
 import com.exorath.game.api.maps.MapManager;
-import com.exorath.game.api.maps.MapSelection;
 import com.exorath.game.api.team.FreeForAllTeam;
 import com.exorath.game.api.team.Team;
 import com.exorath.game.api.team.TeamManager;
@@ -42,7 +43,7 @@ public class FFAGame extends Minigame {
      * TODO: Confirm how Nick implemented maps
      */
     public void setupMaps() {
-        this.getManager(MapManager.class).setSelection(MapSelection.VOTE);
+        this.getManager(MinigameMapManager.class).setSelection(MapSelection.VOTE);
         this.getManager(MapManager.class).addMap("mapName1");
         this.getManager(MapManager.class).addMap("mapName2");
         this.getManager(MapManager.class).addMap("mapName3");
