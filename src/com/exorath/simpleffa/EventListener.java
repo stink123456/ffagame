@@ -52,7 +52,7 @@ public class EventListener implements GameListener {
             HUDText text = new HUDText("Destroy the diamond block to seize victory!", HUDPriority.MEDIUM);
             text.setEffect(new RainbowEffect(2, ChatColor.BOLD));
             game.getManager(HUDManager.class).getPublicHUD().addActionBar("ffa_rules", text, true);
-        }else if(e.getNewState() == GameState.WAITING) {
+        } else if (e.getNewState() == GameState.WAITING) {
             ScoreboardText text = new ScoreboardText(ChatColor.BOLD + "Game ended. ", HUDPriority.MEDIUM);
             text.setEffect(new RainbowFlickerEffect(10));
             game.getManager(HUDManager.class).getPublicHUD().addScoreboard("ffa_rules", text, true);
