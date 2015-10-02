@@ -2,9 +2,9 @@ package com.exorath.simpleffa;
 
 import com.exorath.game.api.GameProperty;
 import com.exorath.game.api.action.DieAction;
-import com.exorath.game.api.gametype.minigame.Minigame;
-import com.exorath.game.api.gametype.minigame.maps.MapSelection;
-import com.exorath.game.api.gametype.minigame.maps.MinigameMapManager;
+import com.exorath.game.api.type.minigame.Minigame;
+import com.exorath.game.api.type.minigame.maps.MapSelection;
+import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
 import com.exorath.game.api.maps.MapManager;
 import com.exorath.game.api.team.FreeForAllTeam;
 import com.exorath.game.api.team.Team;

@@ -13,7 +13,7 @@ import com.exorath.game.api.GameState;
 import com.exorath.game.api.StopCause;
 import com.exorath.game.api.events.GamePlayerKillPlayerEvent;
 import com.exorath.game.api.events.GameStateChangedEvent;
-import com.exorath.game.api.gametype.minigame.Minigame;
+import com.exorath.game.api.type.minigame.Minigame;
 import com.exorath.game.api.hud.HUDManager;
 import com.exorath.game.api.hud.HUDPriority;
 import com.exorath.game.api.hud.HUDText;
