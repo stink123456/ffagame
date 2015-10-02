@@ -3,6 +3,10 @@ package com.exorath.simpleffa;
 import com.exorath.game.api.hud.effects.RainbowEffect;
 import com.exorath.game.api.hud.effects.RainbowFlickerEffect;
 import com.exorath.game.api.hud.locations.scoreboard.ScoreboardText;
+import com.exorath.game.api.maps.MapManager;
+import com.exorath.game.api.player.PlayerManager;
+import com.exorath.game.api.team.Team;
+import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -19,6 +23,7 @@ import com.exorath.game.api.hud.HUDPriority;
 import com.exorath.game.api.hud.HUDText;
 import com.exorath.game.api.player.GamePlayer;
 import com.exorath.game.api.team.TeamManager;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
  * Created by TOON on 8/23/2015.
@@ -59,4 +64,15 @@ public class EventListener implements GameListener {
         }
     }
 
+    @Override
+    public void onMove(PlayerMoveEvent e, Game game, GamePlayer player) {
+        if(game.getState() != GameState.INGAME)
+            return;
+        if(e.getTo().getBlock().getType() != Material.STATIONARY_LAVA && e.getTo().getBlock().getType() != Material.LAVA)
+            return;
+        Team team = game.getManager(TeamManager.class).getTeam(player);
+        if(team == null)
+            return;
+         player.getBukkitPlayer().teleport(game.getManager(MinigameMapManager.class).getCurrent().getSpawns(team.getName()).getSpawn(0).getLocation());
+    }
 }
