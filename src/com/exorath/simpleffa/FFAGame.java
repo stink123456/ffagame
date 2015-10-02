@@ -17,10 +17,10 @@ import com.exorath.game.api.team.TeamManager;
 public class FFAGame extends Minigame {
 
     public FFAGame() {
-        setName("Exorath DeathMatch");//Implemented!
-        setDescription("Kill all other players in this free for all game to win.");//Implemented!
+        setName("Exorath DeathMatch");
+        setDescription("Kill all other players in this free for all game to win.");
         getProperties().set(Minigame.MIN_PLAYERS, 1);
-        getProperties().set(Minigame.MAX_DURATION, 20 * 180);//Implemented!
+        getProperties().set(Minigame.MAX_DURATION, 20 * 300);//5 minutes
         getProperties().set(GameProperty.ALLOW_SPECTATING, true);//TODO: Check if implemented
 
         setupTeams();
@@ -43,7 +43,7 @@ public class FFAGame extends Minigame {
      * TODO: Confirm how Nick implemented maps
      */
     public void setupMaps() {
-        this.getManager(MinigameMapManager.class).setSelection(MapSelection.VOTE);
+        this.getManager(MinigameMapManager.class).setSelection(MapSelection.RANDOM);
         this.getManager(MapManager.class).addMap("mapName1");
         this.getManager(MapManager.class).addMap("mapName2");
         this.getManager(MapManager.class).addMap("mapName3");
