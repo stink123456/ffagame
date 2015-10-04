@@ -37,7 +37,7 @@ public class EventListener implements GameListener {
     @Override
     public void onGameStateChange(GameStateChangedEvent e) {
         if (e.getNewState() == GameState.INGAME) {
-            HUDText text = new HUDText("Get to the end to achieve victory!", HUDPriority.MEDIUM);
+            HUDText text = new HUDText("Get to the end to achieve victory!", HUDPriority.MEDIUM.get());
             text.setEffect(new RainbowEffect(2, ChatColor.BOLD));
             game.getManager(HUDManager.class).getPublicHUD().addActionBar("ffa_rules", text, true);
             counter = new Counter(game.getManager(TeamManager.class).getTeam());

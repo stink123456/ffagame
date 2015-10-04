@@ -24,7 +24,7 @@ public class Counter extends BukkitRunnable{
         start();
     }
     private void start(){
-        team.getActivePlayers().forEach(p -> p.getHud().getScoreboard().addText("ffa_counter", new ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM)));
+        team.getActivePlayers().forEach(p -> p.getHud().getScoreboard().addText("ffa_counter", new ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get())));
         runTaskTimer(SimpleFFA.getInstance(), 0, INTERVAL);
     }
     public void stop(){
