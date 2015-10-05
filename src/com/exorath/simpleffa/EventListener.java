@@ -6,6 +6,7 @@ import com.exorath.game.api.maps.GameMap;
 import com.exorath.game.api.team.Team;
 import com.exorath.game.api.type.minigame.MinigameStateManager;
 import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +22,8 @@ import com.exorath.game.api.hud.HUDPriority;
 import com.exorath.game.api.hud.HUDText;
 import com.exorath.game.api.player.GamePlayer;
 import com.exorath.game.api.team.TeamManager;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
@@ -48,12 +51,34 @@ public class EventListener implements GameListener {
     }
     @Override
     public void onMove(PlayerMoveEvent e, Game game, GamePlayer player) {
+        if(player == null)
+            return;
         if(game.getState() != GameState.INGAME)
             return;
         GameMap map = game.getManager(MinigameMapManager.class).getCurrent();
         checkIfLava(player, map, e.getTo());
         checkIfFinish(player, map, e.getTo());
+
     }
+
+    @Override
+    public void onChat(AsyncPlayerChatEvent event, Game game, GamePlayer player) {
+        if(player == null)
+            return;
+        player.getSqlData().setString("lastMessage", StringEscapeUtils.escapeSql(StringEscapeUtils.escapeJava(event.getMessage())));
+    }
+
+    @Override
+    public void onJoin(PlayerJoinEvent event, Game game, GamePlayer player) {
+        if(player == null)
+            return;
+        String s = player.getSqlData().getString("lastMessage");
+        if(s != null)
+            player.sendMessage(ChatColor.GREEN + "Last message: " + ChatColor.RESET + s );
+        else
+            player.sendMessage("SQL not loaded.");
+    }
+
     private void checkIfLava(GamePlayer player,GameMap map, Location loc){
         if(loc.getBlock().getType() != Material.STATIONARY_LAVA && loc.getBlock().getType() != Material.LAVA)
             return;
