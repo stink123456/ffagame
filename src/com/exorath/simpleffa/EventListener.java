@@ -1,30 +1,30 @@
 package com.exorath.simpleffa;
 
+import com.exorath.game.GameAPI;
+import com.exorath.game.api.hud.effects.RainbowEffect;
+import com.exorath.game.api.maps.GameMap;
+import com.exorath.game.api.team.Team;
+import com.exorath.game.api.type.minigame.MinigameStateManager;
+import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.exorath.game.GameAPI;
 import com.exorath.game.api.Game;
 import com.exorath.game.api.GameListener;
 import com.exorath.game.api.GameState;
 import com.exorath.game.api.StopCause;
 import com.exorath.game.api.events.GameStateChangedEvent;
+import com.exorath.game.api.type.minigame.Minigame;
 import com.exorath.game.api.hud.HUDManager;
 import com.exorath.game.api.hud.HUDPriority;
 import com.exorath.game.api.hud.HUDText;
-import com.exorath.game.api.hud.effects.RainbowEffect;
-import com.exorath.game.api.maps.GameMap;
 import com.exorath.game.api.player.GamePlayer;
-import com.exorath.game.api.team.Team;
 import com.exorath.game.api.team.TeamManager;
-import com.exorath.game.api.type.minigame.Minigame;
-import com.exorath.game.api.type.minigame.MinigameStateManager;
-import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
  * Created by TOON on 8/23/2015.
@@ -45,8 +45,9 @@ public class EventListener implements GameListener {
             game.getManager(HUDManager.class).getPublicHUD().addActionBar("ffa_rules", text, true);
             counter = new Counter(game.getManager(TeamManager.class).getTeam());
 
-        } else if (e.getNewState() == GameState.FINISHING)
+        } else if (e.getNewState() == GameState.FINISHING) {
             counter.stop();
+        }
     }
     @Override
     public void onMove(PlayerMoveEvent e, Game game, GamePlayer player) {
@@ -64,7 +65,7 @@ public class EventListener implements GameListener {
     public void onChat(AsyncPlayerChatEvent event, Game game, GamePlayer player) {
         if(player == null)
             return;
-        player.getSQLData().setString("lastMessage", StringEscapeUtils.escapeSql(StringEscapeUtils.escapeJava(event.getMessage())));
+        player.getSQLData().setString("lastMessage", event.getMessage());
     }
 
     @Override
