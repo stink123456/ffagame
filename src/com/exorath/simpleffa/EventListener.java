@@ -65,14 +65,14 @@ public class EventListener implements GameListener {
     public void onChat(AsyncPlayerChatEvent event, Game game, GamePlayer player) {
         if(player == null)
             return;
-        player.getSqlData().setString("lastMessage", StringEscapeUtils.escapeSql(StringEscapeUtils.escapeJava(event.getMessage())));
+        player.getSQLData().setString("lastMessage", event.getMessage());
     }
 
     @Override
     public void onJoin(PlayerJoinEvent event, Game game, GamePlayer player) {
         if(player == null)
             return;
-        String s = player.getSqlData().getString("lastMessage");
+        String s = player.getSQLData().getString("lastMessage");
         if(s != null)
             player.sendMessage(ChatColor.GREEN + "Last message: " + ChatColor.RESET + s );
         else
