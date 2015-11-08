@@ -2,4 +2,4 @@ name: FFAGame
 version: 0.01
 main: com.exorath.simpleffa.SimpleFFA
 description: "A GameAPI game"
-depends: GameAPI
+depend: [GameAPI]
