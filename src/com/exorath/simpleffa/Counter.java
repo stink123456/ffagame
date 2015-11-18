@@ -1,14 +1,14 @@
 package com.exorath.simpleffa;
 
-import com.exorath.game.api.hud.HUDPriority;
-import com.exorath.game.api.hud.HUDText;
-import com.exorath.game.api.hud.locations.scoreboard.ScoreboardText;
-import com.exorath.game.api.player.GamePlayer;
-import com.exorath.game.api.team.Team;
+import java.text.DecimalFormat;
+
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.text.DecimalFormat;
+import com.exorath.game.api.hud.HUDPriority;
+import com.exorath.game.api.hud.locations.scoreboard.ScoreboardText;
+import com.exorath.game.api.player.GamePlayer;
+import com.exorath.game.api.team.Team;
 
 /**
  * Created by TOON on 10/2/2015.
@@ -36,11 +36,10 @@ public class Counter extends BukkitRunnable{
     public void run(){
         ticks+= INTERVAL;
 
-        for(GamePlayer p : team.getActivePlayers()){
+        for(GamePlayer p : team.getActivePlayers())
             if(p.getHud().getScoreboard().containsText("ffa_counter"))
                 p.getHud().getScoreboard().getText("ffa_counter").setText(PREFIX + FORMAT.format(ticks / 20f));
             else
                 p.getHud().getScoreboard().addText("ffa_counter", new ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get()));
-        }
     }
 }
