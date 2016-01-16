@@ -2,6 +2,7 @@ package com.exorath.simpleffa;
 
 import com.exorath.game.api.GameProperty;
 import com.exorath.game.api.maps.MapManager;
+import com.exorath.game.api.player.PlayerManager;
 import com.exorath.game.api.team.FreeForAllTeam;
 import com.exorath.game.api.team.Team;
 import com.exorath.game.api.team.TeamManager;
@@ -17,6 +18,7 @@ import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
 public class FFAGame extends Minigame {
 
     public FFAGame() {
+        super(g -> g.getManager(PlayerManager.class).getIngamePlayerCount() > 1);
         setName("Exorath DeathMatch");
         setDescription("Kill all other players in this free for all game to win.");
         getProperties().set(Minigame.MIN_PLAYERS, 1);
@@ -39,9 +41,6 @@ public class FFAGame extends Minigame {
         getManager(TeamManager.class).addTeam(team);
     }
 
-    /**
-     * TODO: Confirm how Nick implemented maps
-     */
     public void setupMaps() {
         this.getManager(MinigameMapManager.class).setSelection(MapSelection.RANDOM);
         this.getManager(MapManager.class).addMap("mapName1");
