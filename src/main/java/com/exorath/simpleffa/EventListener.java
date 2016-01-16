@@ -51,7 +51,7 @@ public class EventListener implements GameListener {
     public void onMove(PlayerMoveEvent e, Game game, GamePlayer player) {
         if(player == null)
             return;
-        if(game.getState() != GameState.INGAME)
+        if(((Minigame) game).getState() != GameState.INGAME)
             return;
         GameMap map = game.getManager(MinigameMapManager.class).getCurrent();
         checkIfLava(player, map, e.getTo());

@@ -1,5 +1,9 @@
 /out/
 /bin/
+/target/
+/.idea/
+/.settings/
+*.jar
 *.class
 *.iml
 *.xml

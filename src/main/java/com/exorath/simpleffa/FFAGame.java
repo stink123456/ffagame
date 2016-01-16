@@ -1,7 +1,6 @@
 package com.exorath.simpleffa;
 
 import com.exorath.game.api.GameProperty;
-import com.exorath.game.api.action.DieAction;
 import com.exorath.game.api.maps.MapManager;
 import com.exorath.game.api.team.FreeForAllTeam;
 import com.exorath.game.api.team.Team;
@@ -22,13 +21,11 @@ public class FFAGame extends Minigame {
         setDescription("Kill all other players in this free for all game to win.");
         getProperties().set(Minigame.MIN_PLAYERS, 1);
         getProperties().set(Minigame.MAX_DURATION, 20 * 300);//5 minutes
-        getProperties().set(GameProperty.ALLOW_SPECTATING, true);//TODO: Check if implemented
+        getProperties().set(Minigame.ALLOW_SPECTATING, true);//TODO: Check if implemented
         getProperties().set(GameProperty.DROP_ITEMS, true);
         getProperties().set(GameProperty.HUNGER, false);
         setupTeams();
         setupMaps();
-
-        getActions().setDieAction(new DieAction.Spectate());
 
         addListener(new EventListener(this));//Implemented!
     }
