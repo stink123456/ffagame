@@ -6,6 +6,5 @@
 *.jar
 *.class
 *.iml
-*.xml
 *.project
 *.classpath
