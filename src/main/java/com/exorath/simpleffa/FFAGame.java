@@ -1,15 +1,15 @@
 package com.exorath.simpleffa;
 
 import com.exorath.game.api.GameProperty;
-import com.exorath.game.api.maps.MapManager;
+import com.exorath.game.api.map.MapManager;
 import com.exorath.game.api.player.PlayerManager;
 import com.exorath.game.api.team.FreeForAllTeam;
 import com.exorath.game.api.team.Team;
 import com.exorath.game.api.team.TeamManager;
 import com.exorath.game.api.team.TeamProperty;
 import com.exorath.game.api.type.minigame.Minigame;
-import com.exorath.game.api.type.minigame.maps.MapSelection;
-import com.exorath.game.api.type.minigame.maps.MinigameMapManager;
+import com.exorath.game.api.type.minigame.map.MapSelection;
+import com.exorath.game.api.type.minigame.map.MinigameMapManager;
 
 /**
  * Created by TOON on 8/23/2015.

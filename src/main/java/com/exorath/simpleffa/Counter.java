@@ -2,11 +2,11 @@ package com.exorath.simpleffa;
 
 import java.text.DecimalFormat;
 
+import com.exorath.game.api.hud.location.Scoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.exorath.game.api.hud.HUDPriority;
-import com.exorath.game.api.hud.locations.scoreboard.ScoreboardText;
 import com.exorath.game.api.player.GamePlayer;
 import com.exorath.game.api.team.Team;
 
@@ -25,7 +25,7 @@ public class Counter extends BukkitRunnable{
         start();
     }
     private void start(){
-        team.getActivePlayers().forEach(p -> p.getHud().getScoreboard().addText("ffa_counter", new ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get())));
+        team.getActivePlayers().forEach(p -> p.getHud().getScoreboard().addText("ffa_counter", new Scoreboard.ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get())));
         runTaskTimer(SimpleFFA.getInstance(), 0, INTERVAL);
     }
     public void stop(){
@@ -40,6 +40,6 @@ public class Counter extends BukkitRunnable{
             if(p.getHud().getScoreboard().containsText("ffa_counter"))
                 p.getHud().getScoreboard().getText("ffa_counter").setText(PREFIX + FORMAT.format(ticks / 20f));
             else
-                p.getHud().getScoreboard().addText("ffa_counter", new ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get()));
+                p.getHud().getScoreboard().addText("ffa_counter", new Scoreboard.ScoreboardText(PREFIX + ticks,HUDPriority.MEDIUM.get()));
     }
 }
